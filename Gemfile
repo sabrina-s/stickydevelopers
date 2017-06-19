@@ -36,6 +36,22 @@ gem 'jbuilder', '~> 2.5'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  # RSpec for Rails 3+
+  gem 'rspec-rails'
+  # A library for setting up Ruby objects as test data.
+  gem 'factory_girl_rails'
+  # Brings back `assigns` and `assert_template` to your Rails tests
+  gem 'rails-controller-testing'
+  # Collection of testing matchers extracted from Shoulda
+  gem 'shoulda-matchers'
+  # Guard::RSpec automatically run your specs (much like autotest)
+  gem 'guard-rspec', require: false
+  gem 'capybara'
+end
+
+group :test do
+  # Code coverage for Ruby 1.9+ with a powerful configuration library and automatic merging of coverage across test suites
+  gem 'simplecov', require: false
 end
 
 group :development do
@@ -45,7 +61,22 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  # Guard::Bundler automatically install/update your gem bundle when needed
+  gem 'guard-bundler', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Flexible authentication solution for Rails with Warden
+gem 'devise'
+# A library for generating fake data such as names, addresses, and phone numbers.
+gem 'faker'
+# Forms made easy for Rails! It's tied to a simple DSL, with no opinion on markup.
+gem 'simple_form'
+# A gem to automate using jQuery with Rails
+gem 'jquery-rails'
+# RailsAdmin is a Rails engine that provides an easy-to-use interface for managing your data
+gem 'rails_admin', '~> 1.2'
+# Official Sass port of Bootstrap 2 and 3.
+gem 'bootstrap-sass'
