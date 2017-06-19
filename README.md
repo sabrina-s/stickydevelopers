@@ -10,11 +10,6 @@ This website will contain all the following features:
 
 **Week 1**
 
-Registered User stories:
-As a user, I can sign in using my email address
-As a user, I can access browse a collection of products
-As a user, I can view the details of one product
-
 Admin stories:
 As an admin, I can create a new product
 As an admin, I can view a list of all products
@@ -24,6 +19,11 @@ Visitor stories:
 As a visitor, I can access browse a collection of products
 As a visitor, I can view the details of one product
 As a visitor, I can sign up using email to become a registered user
+
+Registered User stories:
+As a user, I can sign in using my email address
+As a user, I can access browse a collection of products
+As a user, I can view the details of one product
 
 **Week 2**
 
@@ -117,4 +117,4 @@ git remote add heroku https://git.heroku.com/stickydevelopers.git
 
 ## ERD
 
-![ERD Diagram]()
+![ERD Diagram](https://github.com/sabrina-s/stickydevelopers/blob/master/stickydevelopers_erd.png?raw=true)
