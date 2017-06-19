@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/pgadmin', as: 'rails_admin'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations' }
   namespace :user do
     resources :products, only: [:index, :show]
     resource :cart, except: [:new, :create]
