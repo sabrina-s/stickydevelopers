@@ -4,11 +4,14 @@ RSpec.describe Admin::ProductsController, type: :controller do
 
   context 'admin not signed in' do
 
-    it do
-      expect(response).to redirect_to root_path
-      expect(flash[:alert]).to match(/You are not authorised. Please sign in./)
+    before do
+      get :index
     end
-    
+
+    it do
+      expect(response).to redirect_to new_admin_session_path
+    end
+
   end
 
   context 'admin signed in' do
