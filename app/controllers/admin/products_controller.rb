@@ -6,7 +6,7 @@ class Admin::ProductsController < ApplicationController
   end
 
   def show
-    @product = Product.find(params[:id])
+    @product = Product.find_by(slug: params[:slug])
   end
 
   def new
@@ -26,7 +26,7 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :primary_pic)
+    params.require(:product).permit(:name, :description, :slug)
   end
 
 end

@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/pgadmin', as: 'rails_admin'
 
-  root 'products#index'
+  root 'shop/products#index'
 
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: "users/omniauth_callbacks" }
 
   namespace :shop  do
-    resources :products, only: [:index, :show]
+    resources :products, only: [:index, :show], param: :slug
     resource :cart, except: [:new, :create]
     resources :orders
   end
 
   devise_for :admins
   namespace :admin do
-    resources :products
+    resources :products, param: :slug
   end
 
   # For Guests

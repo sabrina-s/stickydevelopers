@@ -35,7 +35,7 @@ RSpec.describe Shop::ProductsController, type: :controller do
         let(:product) { create(:product) }
 
         before do
-          get :show, params: { id: product }
+          get :show, params: { slug: product.slug }
         end
 
         it { expect(assigns(:product)).to eq(product) }

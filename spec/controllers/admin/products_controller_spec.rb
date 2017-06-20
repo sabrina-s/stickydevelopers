@@ -34,6 +34,18 @@ RSpec.describe Admin::ProductsController, type: :controller do
 
     end
 
+    describe 'GET #show' do
+
+      let!(:product) { create(:product) }
+
+      before do
+        get :show, params: { slug: product.slug }
+      end
+
+      it { expect(assigns(:product)).to eq(product) }
+
+    end
+
   end
 
 end
