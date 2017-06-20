@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :addresses
   has_many :orders
-  has_one :cart
+  has_one :user_cart
   validates :first_name, presence: true, length: { maximum: 30, minimum: 2 }
   validates :last_name, presence: true, length: { maximum: 30, minimum: 2 }
   validates :birthdate, presence: true

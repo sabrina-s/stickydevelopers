@@ -8,7 +8,7 @@ RSpec.describe User, type: :model do
   end
   it { should have_many(:orders) }
   it { should have_many(:addresses) }
-  it { should have_one(:cart) }
+  it { should have_one(:user_cart) }
   it { should validate_presence_of(:username) }
   it { should validate_length_of(:username).is_at_least(2).is_at_most(30) }
   it { should validate_presence_of(:password) }
