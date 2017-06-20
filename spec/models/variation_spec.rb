@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Variation, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  it { should validate_presence_of(:label) }
+  it { should validate_presence_of(:price) }
+  it { should validate_presence_of(:stock) }
+  it { should validate_numericality_of(:price) }
+  it { should validate_numericality_of(:stock) }
 end
