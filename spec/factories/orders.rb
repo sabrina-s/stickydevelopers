@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :order do
-    user nil
-    address nil
+    association :user
+    association :address
     status 1
   end
 end
