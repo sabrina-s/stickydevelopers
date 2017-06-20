@@ -29,7 +29,7 @@ class User < ApplicationRecord
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
         user.email = data["email"] if user.email.blank?
-        user.first_name = data["first_name"] if user.first_name.blank?
+        user.first_name = data["name"] if user.first_name.blank?
       end
     end
   end
