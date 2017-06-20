@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :guest_cart_item do
-    guest_cart nil
-    variation nil
+    association :guest_cart
+    association :variation
   end
 end

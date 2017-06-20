@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :user_cart do
-    user nil
+    association :user
     session "MyString"
   end
 end

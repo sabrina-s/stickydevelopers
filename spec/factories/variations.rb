@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :variation do
-    product nil
+    association :product
     label "MyString"
     price 1
     stock 1

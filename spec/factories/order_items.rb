@@ -1,7 +1,7 @@
 FactoryGirl.define do
   factory :order_item do
-    order nil
-    variation nil
+    association :order
+    association :variation
     amount 1
   end
 end
