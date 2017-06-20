@@ -5,3 +5,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+Product.destroy_all
+
+10.times do
+  name = Faker::Pokemon.unique.name
+  slug = name.downcase
+  products = Product.create([{ name: "#{name} sticker", description: "", slug: slug }])
+end
