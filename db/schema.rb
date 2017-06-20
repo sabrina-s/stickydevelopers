@@ -46,12 +46,6 @@ ActiveRecord::Schema.define(version: 20170620035408) do
     t.index ["reset_password_token"], name: "index_admins_on_reset_password_token", unique: true
   end
 
-  create_table "products", force: :cascade do |t|
-    t.string "name"
-    t.string "description"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-
   create_table "orders", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "address_id"
@@ -60,6 +54,13 @@ ActiveRecord::Schema.define(version: 20170620035408) do
     t.datetime "updated_at", null: false
     t.index ["address_id"], name: "index_orders_on_address_id"
     t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "user_carts", force: :cascade do |t|
