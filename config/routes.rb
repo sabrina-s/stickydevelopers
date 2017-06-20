@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   root 'products#index'
 
-  devise_for :users
+  devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: "users/omniauth_callbacks" }
+
   namespace :user do
     resources :products, only: [:index, :show]
     resource :cart, except: [:new, :create]

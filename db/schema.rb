@@ -10,10 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170620014207) do
+ActiveRecord::Schema.define(version: 20170620035408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "line1"
+    t.string "line2"
+    t.string "zipcode"
+    t.string "country"
+    t.string "contact_person"
+    t.string "contact_no"
+    t.integer "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -37,6 +51,23 @@ ActiveRecord::Schema.define(version: 20170620014207) do
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "address_id"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["address_id"], name: "index_orders_on_address_id"
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
+  create_table "user_carts", force: :cascade do |t|
+    t.bigint "user_id"
+    t.string "session"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_user_carts_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -52,8 +83,19 @@ ActiveRecord::Schema.define(version: 20170620014207) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "username", null: false
+    t.string "first_name", null: false
+    t.string "last_name", null: false
+    t.date "birthdate", null: false
+    t.integer "default_shipping"
+    t.integer "default_billing"
+    t.string "provider"
+    t.string "uid"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "orders", "addresses"
+  add_foreign_key "orders", "users"
+  add_foreign_key "user_carts", "users"
 end
