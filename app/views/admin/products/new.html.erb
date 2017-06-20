@@ -1,0 +1,14 @@
+<div class="col-md-6 col-md-offset-3">
+  <div class="row">
+    <%= simple_form_for @product, url: admin_products_path do |product| %>
+      <%= product.input :name %>
+      <%= product.input :description %>
+      <%= product.input :slug %>
+      <%= product.button :submit, class: "button" %>
+    <% end %>
+  </div>
+
+  <div class="row">
+    <li><%= link_to "Back", admin_products_path %></li>
+  </div>
+</div>
