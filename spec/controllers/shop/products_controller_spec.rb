@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe User::ProductsController, type: :controller do
+RSpec.describe Shop::ProductsController, type: :controller do
 
     # context 'user not signed in' do
     #

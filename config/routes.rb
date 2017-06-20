@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: "users/omniauth_callbacks" }
 
-  namespace :user do
+  namespace :shop  do
     resources :products, only: [:index, :show]
     resource :cart, except: [:new, :create]
     resources :orders
