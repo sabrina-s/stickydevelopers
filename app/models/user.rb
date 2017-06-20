@@ -28,6 +28,8 @@ class User < ApplicationRecord
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.provider = "facebook"
+        user.uid = data["id"] if user.uid.blank?
         user.email = data["email"] if user.email.blank?
         user.first_name = data["name"] if user.first_name.blank?
       end
