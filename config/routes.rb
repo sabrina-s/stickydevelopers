@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   mount RailsAdmin::Engine => '/pgadmin', as: 'rails_admin'
 
+  root 'products#index'
+
   devise_for :users
   namespace :user do
     resources :products, only: [:index, :show]
