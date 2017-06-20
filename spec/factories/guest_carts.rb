@@ -1,6 +1,5 @@
 FactoryGirl.define do
-  factory :user_cart do
-    association :user
+  factory :guest_cart do
     session "MyString"
   end
 end
