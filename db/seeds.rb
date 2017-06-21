@@ -11,5 +11,12 @@ Product.destroy_all
 10.times do
   name = Faker::Pokemon.unique.name
   slug = name.downcase
-  products = Product.create([{ name: "#{name} sticker", description: "", slug: slug }])
+  product = Product.create([{ name: "#{name} sticker", description: "", slug: slug }])
+
+  var_label = [ 'Small', 'Medium', 'Large' ]
+  var_price = [ 1.5, 2, 2.5 ]
+  (0..2).each do |i|
+    variation = product.first.variations.build(label: var_label[i], price: var_price[i], stock: 5)
+    variation.save
+  end
 end

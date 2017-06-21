@@ -16,7 +16,9 @@
         <ul class="dropdown-menu" id="cart-dropdown">
           <% if @current_cart.user_cart_items.present? %>
             <% @current_cart.user_cart_items.each do |item| %>
-              <li><%= item.variation.product.name %> x <%= item.variation.amount %></li>
+              <% if item.id %>
+                <li><%= item.variation.product.name %> x <%= item.amount %></li>
+              <% end %>
             <% end %>
           <% else %>
             <center>
@@ -24,6 +26,7 @@
             <li><%= link_to 'View Cart', '#' %></li>
             </center>
           <% end %>
+          <li><center><%= link_to 'View Cart', shop_cart_path %></center></li>
         </ul>
       </li>
     </ul>

@@ -4,8 +4,11 @@ class UserCart < ApplicationRecord
 
   validates :user, presence: true
 
-  def add_item(variation_id, amount)
-    item = self.user_cart_items.build(variation_id: variation_id, amount: amount)
+  attr_accessor :variation_id, :amount
+
+  def add_item(variation, amount)
+    item = self.user_cart_items.build(variation_id: variation.id, amount: amount)
+    byebug
     return true if item.save
     false
   end
