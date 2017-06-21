@@ -29,7 +29,7 @@ RSpec.describe Admin::ProductsController, type: :controller do
         before do
           get :index
         end
-
+        it { expect(response).to have_http_status(:success) }
         it { expect(assigns(:products)).to match_array(products) }
 
     end
@@ -41,7 +41,7 @@ RSpec.describe Admin::ProductsController, type: :controller do
       before do
         get :show, params: { slug: product.slug }
       end
-
+      it { expect(response).to have_http_status(:success) }
       it { expect(assigns(:product)).to eq(product) }
 
     end

@@ -1,14 +1,11 @@
 class UserCart < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :user_cart_items
-
-  validates :user, presence: true
 
   attr_accessor :variation_id, :amount
 
   def add_item(variation, amount)
     item = self.user_cart_items.build(variation_id: variation.id, amount: amount)
-    byebug
     return true if item.save
     false
   end
