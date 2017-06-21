@@ -17,9 +17,15 @@ class UserCart < ApplicationRecord
     false
   end
 
-  def remove_item(variation_id)
-    item = self.user_cart_items.find_by(variation_id: variation_id)
+  def remove_item(cart_item)
+    item = self.user_cart_items.find(cart_item)
     return true if item.delete
     false
+  end
+
+  def clear_items
+    self.user_cart_items.each do |item|
+      item.destroy
+    end
   end
 end

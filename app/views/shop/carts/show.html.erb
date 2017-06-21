@@ -1,17 +1,25 @@
 <div class="col-md-8 col-md-offset-2">
 <h1>Current Cart:</h1>
-  <table class="table">
-    <tr>
-      <td>Item</td>
-      <td>Variation</td>
-      <td>Amount</td>
-    </tr>
-    <% @current_cart.user_cart_items.each do |item| %>
+  <% if @current_cart && @current_cart.user_cart_items.count > 0 %>
+    <table class="table">
       <tr>
-        <td><%= item.variation.product.name %></td><td><%= item.variation.label %></td><td><%= item.amount %></td>
+        <th>Item</th>
+        <th>Variation</th>
+        <th>Amount</th>
+        <th>Actions</th>
       </tr>
-    <% end %>
-  </table>
-  <%= link_to 'Clear Cart', '#', class: 'btn btn-default' %>
-  <%= link_to 'Checkout', '#', class: 'btn btn-default' %>
+      <% @current_cart.user_cart_items.each do |item| %>
+        <tr>
+          <td><%= item.variation.product.name %></td>
+          <td><%= item.variation.label %></td>
+          <td><%= item.amount %></td>
+          <td><%= link_to 'Delete', shop_cart_path(item: item), method: :delete %></td>
+        </tr>
+      <% end %>
+    </table>
+    <%= link_to 'Clear Cart', clear_items_shop_cart_path, data: { confirm: "Are you sure?" }, class: 'btn btn-default' %>
+    <%= link_to 'Checkout', '#', class: 'btn btn-default' %>
+  <% else %>
+    No items in cart yet..
+  <% end %>
 </div>

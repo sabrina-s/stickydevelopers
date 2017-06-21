@@ -11,9 +11,24 @@ class Shop::CartsController < ApplicationController
   end
 
   def destroy
-
+    @item = params[:item]
+    if @current_cart.remove_item(@item)
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_back(fallback_location: root_path)
+      flash[:notice] = "There was a problem removing the item from cart"
+    end
   end
 
   def show
+  end
+
+  def clear_items
+    if @current_cart.clear_items
+      redirect_back(fallback_location: root_path)
+    else
+      redirect_back(fallback_location: root_path)
+      flash[:notice] = "There was a problem clearing items from the cart. Please try again"
+    end
   end
 end

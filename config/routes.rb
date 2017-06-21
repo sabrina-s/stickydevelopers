@@ -8,6 +8,9 @@ Rails.application.routes.draw do
   namespace :shop  do
     resources :products, only: [:index, :show], param: :slug
     resource :cart, only: [:show, :create, :destroy] do
+      collection do
+        get 'clear_items'
+      end
     end
     resources :orders
   end
