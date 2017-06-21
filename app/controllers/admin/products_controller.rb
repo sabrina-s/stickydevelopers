@@ -39,7 +39,10 @@ class Admin::ProductsController < ApplicationController
   end
 
   def destroy
+    @product = Product.find_by(slug: params[:slug])
     @product.destroy
+
+    redirect_to admin_products_path, notice: 'Item was successfully deleted.'
   end
 
   private
