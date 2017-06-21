@@ -5,6 +5,10 @@ body {
   font-family: Avenir;
 }
 
+a:hover {
+  text-decoration: none;
+}
+
 .center {
   display: flex;
   justify-content: center;
@@ -25,10 +29,42 @@ body {
   text-align: center;
   text-decoration: none;
   font-size: 15px;
-  transition-duration: 0.4s;
+  transition-duration: 0.7s;
 
   &:hover {
     background-color: #3e77a3;
+    color: white;
+  }
+}
+
+.delete-btn {
+  background-color: red;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+
+  &:hover {
+    color: white;
+  }
+}
+
+.edit-btn {
+  background-color: green;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+
+  &:hover {
     color: white;
   }
 }

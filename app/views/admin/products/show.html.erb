@@ -11,13 +11,17 @@
       </div>
 
       <div class="row">
-        <li><%= link_to "Edit item", edit_admin_product_path(slug: @product.slug), class: "button" %></li>
+        <li><%= link_to "Edit item", edit_admin_product_path(slug: @product.slug), class: "edit-btn" %></li>
+        <li><%= link_to "Delete", admin_product_path(slug: @product.slug), class: "delete-btn", method: :delete, data: { confirm: 'Are you sure?' } %></li>
         <li><%= link_to "Back", admin_products_path, class: "button" %></li>
       </div>
 
       <div class="row variations">
         <table style="width: 100%">
           <h3>Inventory</h3>
+          <tr>
+            <td><%= link_to "Add", new_admin_variation_path(slug: @product.slug) %></td>
+          </tr>
           <tr>
             <th>Label</th>
             <th>Price</th>
@@ -29,6 +33,7 @@
               <td>$<%= v.price %></td>
               <td><%= v.stock %></td>
               <td><%= link_to "Edit", edit_admin_variation_path(slug: @product.slug, id: v.id) %></td>
+              <td><%= link_to "Delete", admin_variation_path(slug: @product.slug, id: v.id), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>
         </table>

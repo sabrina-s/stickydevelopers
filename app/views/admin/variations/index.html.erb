@@ -1,0 +1,21 @@
+<div class="row variations">
+  <table style="width: 100%">
+    <h3>Inventory</h3>
+    <tr>
+      <td><%= link_to "Add", new_admin_variation_path(slug: @product.slug) %></td>
+    </tr>
+    <tr>
+      <th>Label</th>
+      <th>Price</th>
+      <th>Stock</th>
+    </tr>
+    <% @variations.each do |v| %>
+      <tr>
+        <td><%= v.label %></td>
+        <td>$<%= v.price %></td>
+        <td><%= v.stock %></td>
+        <td><%= link_to "Edit", edit_admin_variation_path(slug: @product.slug, id: v.id) %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
