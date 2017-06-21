@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   namespace :shop  do
     resources :products, only: [:index, :show], param: :slug
-    resource :cart, except: [:show, :create, :destroy]
+    resource :cart, only: [:show, :create, :destroy] do
+    end
     resources :orders
   end
 

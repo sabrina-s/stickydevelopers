@@ -1,3 +1,4 @@
 class Product < ApplicationRecord
-  has_many :variations
+  has_many :variations, dependent: :destroy
+
 end
