@@ -29,7 +29,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     @product = Product.find_by(slug: params[:slug])
-    
+
     if @product.update(product_params)
       redirect_to admin_product_path(slug: @product.slug)
     else
