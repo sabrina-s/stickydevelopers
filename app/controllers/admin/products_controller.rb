@@ -23,6 +23,24 @@ class Admin::ProductsController < ApplicationController
     end
   end
 
+  def edit
+    @product = Product.find_by(slug: params[:slug])
+  end
+
+  def update
+    @product = Product.find_by(slug: params[:slug])
+
+    if @product.update(product_params)
+      redirect_to admin_product_path(slug: @product.slug)
+    else
+      render :edit
+    end
+  end
+
+  def destroy
+    @product.destroy
+  end
+
   private
 
   def product_params

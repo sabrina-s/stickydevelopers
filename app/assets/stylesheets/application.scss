@@ -1,2 +1,40 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body {
+  font-family: Avenir;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.index {
+  text-align: center;
+}
+
+.button {
+  background-color: grey;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  padding: 15px 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 15px;
+  transition-duration: 0.4s;
+
+  &:hover {
+    background-color: #3e77a3;
+    color: white;
+  }
+}
+
+li {
+  list-style: none;
+  display: inline-block;
+  margin: 30px 5px 0 0;
+}
