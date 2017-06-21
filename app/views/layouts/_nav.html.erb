@@ -14,9 +14,9 @@
       <li class="dropdown">
       <%= link_to 'Cart', "#", { class: "dropdown-toggle", "data-toggle": "dropdown" }%>
         <ul class="dropdown-menu" id="cart-dropdown">
-          <% if @current_cart.variations.present? %>
-            <% @current_cart.variations.each do |variation| %>
-              <li><%= variation.product.name %> x <%= variation.amount %></li>
+          <% if @current_cart.user_cart_items.present? %>
+            <% @current_cart.user_cart_items.each do |item| %>
+              <li><%= item.variation.product.name %> x <%= item.variation.amount %></li>
             <% end %>
           <% else %>
             <center>

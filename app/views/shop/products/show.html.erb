@@ -49,7 +49,10 @@
     <h2>Info</h2>
     <%= @product.description %>
     <h2>Variation</h2>
-    <%= link_to "Add to Cart", "#", class: "btn btn-default" %>
+    <%= simple_form_for @product do |f| %>
+      <%= f.input :variations, collection: @product.variations, label_method: :label %>
+      <%= f.button :submit, "Add to Cart"%>
+    <% end %>
   </div>
 
 </div>
