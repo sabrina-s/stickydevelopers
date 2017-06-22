@@ -14,21 +14,23 @@
       <li class="dropdown">
       <%= link_to 'Cart', "#", { class: "dropdown-toggle", "data-toggle": "dropdown" }%>
         <ul class="dropdown-menu" id="cart-dropdown">
-        <% if user_signed_in? %>
-          <% if @current_cart.user_cart_items.present? %>
+          <% if @current_cart && (@current_cart.user_cart_items.count > 0) %>
             <% @current_cart.user_cart_items.each do |item| %>
               <% if item.id %>
-                <li><%= item.variation.product.name %> x <%= item.amount %></li>
+                <li style="width: 300px;">
+                  <center>
+                    <%= item.variation.product.name %> ( <%= item.variation.label %> ) x <%= item.amount %>
+                    <%= link_to 'Delete', shop_cart_path(item: item), method: :delete %>
+                  </center>
+                </li>
               <% end %>
             <% end %>
           <% else %>
             <center>
-            <li> Cart is empty.. </li>
-            <li><%= link_to 'View Cart', '#' %></li>
+              <li style="width: 300px;"> Cart is empty.. </li>
             </center>
-            <li><center><%= link_to 'View Cart', shop_cart_path %></center></li>
           <% end %>
-        <% end %>
+          <li><center><%= link_to 'View Cart', shop_cart_path %></center></li>
         </ul>
       </li>
     </ul>

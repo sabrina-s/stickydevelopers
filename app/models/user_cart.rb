@@ -1,14 +1,11 @@
 class UserCart < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, optional: true
   has_many :user_cart_items
-
-  validates :user, presence: true
 
   attr_accessor :variation_id, :amount
 
   def add_item(variation, amount)
     item = self.user_cart_items.build(variation_id: variation.id, amount: amount)
-    byebug
     return true if item.save
     false
   end
@@ -20,9 +17,15 @@ class UserCart < ApplicationRecord
     false
   end
 
-  def remove_item(variation_id)
-    item = self.user_cart_items.find_by(variation_id: variation_id)
+  def remove_item(cart_item)
+    item = self.user_cart_items.find(cart_item)
     return true if item.delete
     false
+  end
+
+  def clear_items
+    self.user_cart_items.each do |item|
+      item.destroy
+    end
   end
 end
