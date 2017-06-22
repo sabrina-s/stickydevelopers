@@ -8,6 +8,12 @@
       <% else %>
         <li><%= link_to "Sign In", new_user_session_path %></li>
       <% end %>
+
+      <li><%= link_to "Products", shop_products_path %></li>
+
+      <% if admin_signed_in? %>
+        <li><%= link_to "Manage Inventory", admin_products_path %></li>
+      <% end %>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
