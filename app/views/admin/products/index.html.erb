@@ -12,7 +12,14 @@
         </div>
 
         <div class="panel-body">
-          <%= product.description %>
+          <div class="row">
+            <% if product.photo? %>
+              <%= image_tag product.photo.thumb.url %>
+            <% end %>
+          </div>
+          <div class="row">
+            <%= product.description %>
+          </div>
         </div>
 
         <div class="panel-footer">

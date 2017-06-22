@@ -1,4 +1,5 @@
 class Product < ApplicationRecord
-  has_many :variations, dependent: :destroy
+  mount_uploader :photo, PhotoUploader
 
+  has_many :variations, dependent: :destroy
 end
