@@ -6,7 +6,9 @@
       </div>
 
       <div class="row">
-        Photo here
+        <% if @product.photo? %>
+          <%= image_tag @product.photo.url %>
+        <% end %>
         <p><%= @product.description %></p>
       </div>
 
