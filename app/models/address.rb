@@ -7,5 +7,5 @@ class Address < ApplicationRecord
   validates :country, presence: true
   validates :contact_person, presence: true
   validates :contact_no, presence: true
-  validates :type, presence: true
+  validates :add_type, presence: true
 end

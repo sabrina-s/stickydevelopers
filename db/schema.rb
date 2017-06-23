@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 20170621093625) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,7 +23,7 @@ ActiveRecord::Schema.define(version: 20170621093625) do
     t.string "country"
     t.string "contact_person"
     t.string "contact_no"
-    t.integer "type"
+    t.integer "add_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
@@ -98,6 +99,8 @@ ActiveRecord::Schema.define(version: 20170621093625) do
     t.integer "amount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "order_id"
+    t.index ["order_id"], name: "index_user_cart_items_on_order_id"
     t.index ["user_cart_id"], name: "index_user_cart_items_on_user_cart_id"
     t.index ["variation_id"], name: "index_user_cart_items_on_variation_id"
   end
@@ -151,6 +154,7 @@ ActiveRecord::Schema.define(version: 20170621093625) do
   add_foreign_key "order_items", "variations"
   add_foreign_key "orders", "addresses"
   add_foreign_key "orders", "users"
+  add_foreign_key "user_cart_items", "orders"
   add_foreign_key "user_cart_items", "user_carts"
   add_foreign_key "user_cart_items", "variations"
   add_foreign_key "user_carts", "users"
