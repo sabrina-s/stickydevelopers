@@ -50,7 +50,9 @@
     <%= @product.description %>
     <h2>Variation</h2>
     <%= simple_form_for @current_cart.user_cart_items.build, url: shop_cart_path do |f| %>
-      <%= f.input :variation_id, collection: @product.variations, label_method: :label %>
+      <%= f.input :variation_id, collection: @product.variations,
+                                 label_method: :label,
+                                 selected: @product.variations.first %>
       <%= f.input :amount, collection: (1..20) %>
       <%= f.button :submit, "Add to Cart"%>
     <% end %>

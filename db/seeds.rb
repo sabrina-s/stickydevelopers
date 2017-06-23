@@ -56,6 +56,17 @@ User.create(email: email, password: password, password_confirmation: password,
               first_name: first_name, last_name: last_name, birthdate: birthdate)
 end
 
+# Add Address for first user for testing
+line1 = Faker::Address.street_name
+line2 = Faker::Address.street_address
+zipcode = Faker::Address.zip
+country = Faker::Address.country
+contact_person = Faker::Name.name
+user = User.first
+
+Address.create(line1: line1, line2: line2, zipcode: zipcode,
+               country: country, contact_person: contact_person,
+                 contact_no: "123231232", add_type: 1, user: user)
 # Add address
 10.times do
   line1 = Faker::Address.street_name
