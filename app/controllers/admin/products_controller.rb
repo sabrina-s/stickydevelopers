@@ -7,6 +7,7 @@ class Admin::ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(slug: params[:slug])
+    @variations = @product.variations
   end
 
   def new

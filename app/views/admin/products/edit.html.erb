@@ -1,10 +1,10 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="row">
-    <%= simple_form_for @product, url: admin_product_path(slug: @product.slug) do |product| %>
-      <%= product.input :name %>
-      <%= product.input :description %>
-      <%= product.input :slug %>
-      <%= product.button :submit, class: "button" %>
+    <%= simple_form_for @product, url: admin_product_path(slug: @product.slug) do |p| %>
+      <%= p.input :name %>
+      <%= p.input :description %>
+      <%= p.input :slug %>
+      <%= p.button :submit, class: "button" %>
     <% end %>
   </div>
 

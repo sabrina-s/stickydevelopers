@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :products, param: :slug do
       member do
-        resources :variation
+        resources :variations
       end
     end
   end
