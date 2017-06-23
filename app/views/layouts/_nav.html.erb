@@ -2,7 +2,7 @@
   <div class="container">
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", root_path %></li>
-      <li></li>
+      <li><%= link_to "Orders", shop_orders_path %></li>
       <% if user_signed_in? %>
         <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
       <% else %>
@@ -19,7 +19,7 @@
               <% if item.id %>
                 <li style="width: 300px;">
                   <center>
-                    <%= item.variation.product.name %> ( <%= item.variation.label %> ) x <%= item.amount %>
+                    <%= item.variation.product.name %> ( <%= item.variation.label %> ) x <%= item.amount %> - $<%= item.amount*item.variation.price %>
                     <%= link_to 'Delete', shop_cart_path(item: item), method: :delete %>
                   </center>
                 </li>
