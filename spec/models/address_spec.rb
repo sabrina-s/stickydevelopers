@@ -9,5 +9,5 @@ RSpec.describe Address, type: :model do
   it { should validate_presence_of(:country) }
   it { should validate_presence_of(:contact_person) }
   it { should validate_presence_of(:contact_no) }
-  it { should validate_presence_of(:type) }
+  it { should validate_presence_of(:add_type) }
 end
