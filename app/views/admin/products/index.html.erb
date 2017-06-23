@@ -14,7 +14,7 @@
         <div class="panel-body">
           <div class="row">
             <% if product.photo? %>
-              <%= image_tag product.photo.url %>
+              <%= image_tag product.photo.url, style: "height: 200px; width: auto;" %>
             <% end %>
           </div>
           <div class="row">
