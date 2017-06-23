@@ -88,7 +88,6 @@ ActiveRecord::Schema.define(version: 20170623023104) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "slug", null: false
-    t.string "photo"
     t.index ["slug"], name: "index_products_on_slug"
   end
 
