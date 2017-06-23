@@ -6,19 +6,28 @@
         <th>Item</th>
         <th>Variation</th>
         <th>Amount</th>
+        <th>Total Price</th>
         <th>Actions</th>
       </tr>
+      <% sum = 0 %>
       <% @current_cart.user_cart_items.each do |item| %>
+        <% sum += item.amount * item.variation.price %>
         <tr>
           <td><%= item.variation.product.name %></td>
           <td><%= item.variation.label %></td>
           <td><%= item.amount %></td>
+          <td><%= item.variation.price * item.amount %></td>
           <td><%= link_to 'Delete', shop_cart_path(item: item), method: :delete %></td>
         </tr>
       <% end %>
+      <tr>
+        <td colspan=2></td>
+        <td>Total</td>
+        <td>$<%= sum %></td>
+      </tr>
     </table>
     <%= link_to 'Clear Cart', clear_items_shop_cart_path, data: { confirm: "Are you sure?" }, class: 'btn btn-default' %>
-    <%= link_to 'Checkout', '#', class: 'btn btn-default' %>
+    <%= link_to 'Checkout', new_shop_order_path, class: 'btn btn-default' %>
   <% else %>
     No items in cart yet..
   <% end %>

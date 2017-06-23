@@ -78,3 +78,19 @@ li {
   display: inline-block;
   margin: 30px 5px 0 0;
 }
+
+// Nav
+
+#cart-dropdown li {
+  text-align: center;
+}
+
+#cart-dropdown li a {
+  text-align: center;
+}
+
+#viewcart {
+  display: flex;
+  justify-contents: center;
+  width: 100%;
+}
