@@ -30,7 +30,11 @@
               <li style="width: 300px;"> Cart is empty.. </li>
             </center>
           <% end %>
-          <li><center><%= link_to 'View Cart', shop_cart_path %></center></li>
+          <li>
+            <div id="viewcart">
+              <%= link_to 'View Cart', shop_cart_path %>
+            </div>
+          </li>
         </ul>
       </li>
     </ul>

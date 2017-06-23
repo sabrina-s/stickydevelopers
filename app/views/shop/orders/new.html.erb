@@ -13,16 +13,25 @@
         <th>Item</th>
         <th>Variation</th>
         <th>Amount</th>
+        <th>Total Price</th>
         <th>Actions</th>
       </tr>
+      <% sum = 0 %>
       <% @current_cart.user_cart_items.each do |item| %>
+        <% sum += item.variation.price * item.amount %>
         <tr>
           <td><%= item.variation.product.name %></td>
           <td><%= item.variation.label %></td>
           <td><%= item.amount %></td>
+          <td>$<%= item.variation.price * item.amount %></td>
           <td><%= link_to 'Delete', shop_cart_path(item: item), method: :delete %></td>
         </tr>
       <% end %>
+      <tr>
+        <td colspan=2></td>
+        <td>Total</td>
+        <td>$<%= sum %></td>
+      </tr>
     </table>
   <% else %>
     No items in cart yet..

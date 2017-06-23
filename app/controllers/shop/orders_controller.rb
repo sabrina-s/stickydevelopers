@@ -7,8 +7,11 @@ class Shop::OrdersController < ApplicationController
 
   def create
     @order = current_user.orders.build(order_params)
-    @current_cart.move_items_to_order(@order)
-    if @order.save
+    @order.status = 1
+    if Order.transaction do
+      @order.save
+      @current_cart.move_items_to_order(@order)
+      end
       redirect_to root_path
     else
       redirect_back(fallback_location: root_path)
@@ -19,7 +22,7 @@ class Shop::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:address)
+    params.require(:order).permit(:address_id)
   end
 
 end
