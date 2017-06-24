@@ -1,0 +1,31 @@
+<% if cart && (cart.user_cart_items.count > 0) %>
+  <li style="width: 400px;">
+    <table class="table">
+      <tr>
+        <th>Preview</th>
+        <th>Item</th>
+        <th>Amount</th>
+        <th>Total</th>
+        <th>Actions</th>
+      </th>
+      <% cart.user_cart_items.each do |item| %>
+        <% if item.id %>
+          <tr>
+            <td></td>
+            <td><%= item.variation.product.name %></td>
+            <td> ( <%= item.variation.label %> ) x <%= item.amount %> </td>
+            <td>$<%= item.amount*item.variation.price %></td>
+            <td><%= link_to 'Delete', shop_cart_path(item: item), method: :delete %></td>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </li>
+<% else %>
+  <li style="width: 300px;"> Cart is empty.. </li>
+<% end %>
+<li>
+  <div id="viewcart">
+    <%= link_to 'View Cart', shop_cart_path %>
+  </div>
+</li>
