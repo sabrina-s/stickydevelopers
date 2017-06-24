@@ -3,10 +3,15 @@
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Orders", shop_orders_path %></li>
-      <% if user_signed_in? %>
-        <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+      <% if !admin_signed_in? %>
+        <% if user_signed_in? %>
+          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+        <% else %>
+          <li><%= link_to "Sign In", new_user_session_path %></li>
+        <% end %>
       <% else %>
-        <li><%= link_to "Sign In", new_user_session_path %></li>
+        <li>Admin -></li>
+        <li><%= link_to 'Products', admin_products_path %></li>
       <% end %>
     </ul>
 
@@ -14,29 +19,10 @@
       <li class="dropdown">
       <%= link_to 'Cart', "#", { class: "dropdown-toggle", "data-toggle": "dropdown" }%>
         <ul class="dropdown-menu" id="cart-dropdown">
-          <% if @current_cart && (@current_cart.user_cart_items.count > 0) %>
-            <% @current_cart.user_cart_items.each do |item| %>
-              <% if item.id %>
-                <li style="width: 300px;">
-                  <center>
-                    <%= item.variation.product.name %> ( <%= item.variation.label %> ) x <%= item.amount %> - $<%= item.amount*item.variation.price %>
-                    <%= link_to 'Delete', shop_cart_path(item: item), method: :delete %>
-                  </center>
-                </li>
-              <% end %>
-            <% end %>
-          <% else %>
-            <center>
-              <li style="width: 300px;"> Cart is empty.. </li>
-            </center>
-          <% end %>
-          <li>
-            <div id="viewcart">
-              <%= link_to 'View Cart', shop_cart_path %>
-            </div>
-          </li>
+          <%= render partial: 'layouts/cart-dropdown', locals: { cart: @current_cart } %>
         </ul>
       </li>
     </ul>
+
   </div>
 </div>
