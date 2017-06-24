@@ -3,6 +3,7 @@
   <% if @current_cart && @current_cart.user_cart_items.count > 0 %>
     <table class="table">
       <tr>
+        <th>Photo</th>
         <th>Item</th>
         <th>Variation</th>
         <th>Amount</th>
@@ -13,15 +14,20 @@
       <% @current_cart.user_cart_items.each do |item| %>
         <% sum += item.amount * item.variation.price %>
         <tr>
+          <td>
+            <% if item.variation.product.photo %>
+              <%= image_tag item.variation.product.photo.url, class: 'cart-image' %>
+            <% end %>
+          </td>
           <td><%= item.variation.product.name %></td>
           <td><%= item.variation.label %></td>
           <td><%= item.amount %></td>
-          <td><%= item.variation.price * item.amount %></td>
+          <td>$<%= item.variation.price * item.amount %></td>
           <td><%= link_to 'Delete', shop_cart_path(item: item), method: :delete %></td>
         </tr>
       <% end %>
       <tr>
-        <td colspan=2></td>
+        <td colspan=3></td>
         <td>Total</td>
         <td>$<%= sum %></td>
       </tr>

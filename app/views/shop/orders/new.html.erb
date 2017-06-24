@@ -10,6 +10,7 @@
   <% if @current_cart && @current_cart.user_cart_items.count > 0 %>
     <table class="table">
       <tr>
+        <th>Photo</th>
         <th>Item</th>
         <th>Variation</th>
         <th>Amount</th>
@@ -20,6 +21,11 @@
       <% @current_cart.user_cart_items.each do |item| %>
         <% sum += item.variation.price * item.amount %>
         <tr>
+          <td>
+            <% if item.variation.product.photo %>
+              <%= image_tag item.variation.product.photo.url, class: 'cart-image' %>
+            <% end %>
+          </td>
           <td><%= item.variation.product.name %></td>
           <td><%= item.variation.label %></td>
           <td><%= item.amount %></td>
