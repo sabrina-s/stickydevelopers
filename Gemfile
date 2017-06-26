@@ -86,3 +86,5 @@ gem 'bootstrap-sass'
 
 
 gem 'omniauth-facebook'
+
+gem 'fog-aws'
