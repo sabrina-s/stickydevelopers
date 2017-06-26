@@ -78,3 +78,29 @@ li {
   display: inline-block;
   margin: 30px 5px 0 0;
 }
+
+// Nav
+
+#cart-dropdown {
+  text-align: center;
+}
+
+.carousel-inner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.carousel-inner .item {
+  max-height: 250px;
+  max-width: 250px;
+}
+
+#myCarousel {
+  margin: 20px 0 0 0;
+}
+
+.cart-image {
+  max-width: 80px;
+}

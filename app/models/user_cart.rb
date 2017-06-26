@@ -28,4 +28,14 @@ class UserCart < ApplicationRecord
       item.destroy
     end
   end
+
+  def move_items_to_order(order)
+    UserCartItem.transaction do
+      self.user_cart_items.each do |item|
+        item.order = order
+        item.user_cart_id = nil
+        item.save!
+      end
+    end
+  end
 end
