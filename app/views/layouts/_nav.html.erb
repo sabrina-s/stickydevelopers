@@ -3,22 +3,28 @@
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Orders", shop_orders_path %></li>
-      <% if !admin_signed_in? %>
-        <% if user_signed_in? %>
-          <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
-        <% else %>
-          <li><%= link_to "Sign In", new_user_session_path %></li>
+
+        <% if !user_signed_in? %>
+          <% if admin_signed_in? %>
+          <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+          <% else %>
+          <li><%= link_to "Admin", new_admin_session_path %></li>
+          <% end %>
         <% end %>
-      <% else %>
-        <li>Admin -></li>
-        <li><%= link_to 'Products', admin_products_path %></li>
-      <% end %>
 
-      <li><%= link_to "Products", shop_products_path %></li>
+        <% if !admin_signed_in? %>
+          <% if user_signed_in? %>
+            <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
+          <% else %>
+            <li><%= link_to "Sign In", new_user_session_path %></li>
+          <% end %>
+        <% end %>
 
-      <% if admin_signed_in? %>
-        <li><%= link_to "Manage Inventory", admin_products_path %></li>
-      <% end %>
+        <li><%= link_to "Products", shop_products_path %></li>
+
+        <% if admin_signed_in? %>
+          <li><%= link_to "Manage Inventory", admin_products_path %></li>
+        <% end %>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">
