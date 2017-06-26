@@ -4,9 +4,9 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :omniauthable, omniauth_providers: [:facebook]
 
-  has_many :addresses
-  has_many :orders
-  has_one :user_cart
+  has_many :orders, dependent: :destroy
+  has_many :addresses, dependent: :destroy
+  has_one :user_cart, dependent: :destroy
   validates :first_name, presence: true, length: { maximum: 30, minimum: 2 }
   validates :last_name, presence: true, length: { maximum: 30, minimum: 2 }
   validates :birthdate, presence: true

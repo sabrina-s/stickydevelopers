@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
   belongs_to :user
-  has_many :order
+  has_many :order, dependent: :destroy
 
   validates :line1, presence: true
   validates :zipcode, presence: true
