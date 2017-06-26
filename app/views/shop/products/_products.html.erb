@@ -1,0 +1,25 @@
+<% @products.each do |product| %>
+  <div class="col-md-4">
+    <div class="panel panel-default index">
+
+      <div class="panel-heading">
+        <%= link_to product.name, shop_product_path(product.slug) %>
+      </div>
+
+      <div class="panel-body">
+        <div class="row">
+          <% if product.photo? %>
+            <%= image_tag product.photo.url, style: "height: 200px; width: auto;" %>
+          <% end %>
+        </div>
+        <div class="row">
+          <%= product.description %>
+        </div>
+      </div>
+      <div class="panel-footer">
+        <%= link_to "Details", shop_product_path(product.slug) %>
+      </div>
+
+    </div>
+  </div>
+<% end %>
