@@ -4,6 +4,11 @@
       <%= p.input :name %>
       <%= p.input :description %>
       <%= p.input :slug %>
+      <% if @product.photo %>
+        <%= image_tag @product.photo.url %>
+      <% else %>
+        <%= p.file_field :photo %>
+      <% end %>
       <%= p.button :submit, class: "button" %>
     <% end %>
   </div>
