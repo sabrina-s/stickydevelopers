@@ -1,0 +1,4 @@
+<%= render partial: 'products' %>
+<% if @products.blank? %>
+  <h4>Sorry, we couldn't find any items containing "<%= params[:search] %>".</h4>
+<% end %>

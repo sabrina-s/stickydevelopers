@@ -6,7 +6,11 @@ Rails.application.routes.draw do
   devise_for :users, :controllers => { registrations: 'registrations', omniauth_callbacks: "users/omniauth_callbacks" }
 
   namespace :shop  do
-    resources :products, only: [:index, :show], param: :slug
+    resources :products, only: [:index, :show], param: :slug do
+      collection do
+        get 'search'
+      end
+    end
     resource :cart, only: [:show, :create, :destroy] do
       collection do
         get 'clear_items'
