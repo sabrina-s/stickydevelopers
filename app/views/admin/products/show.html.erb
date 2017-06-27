@@ -45,20 +45,15 @@
         <table style="width: 100%">
           <h3>Orders</h3>
           <tr>
+            <th>Order #</th>
             <th>User</th>
             <th>Address</th>
-            <th>Status</th>
           </tr>
           <tr>
             <% @product.orders.each do |order| %>
+              <td><%= order.id %></td>
               <td><%= order.user.username %></td>
               <td><%= order.address.line1 %>, <%= order.address.line2 %>, <%= order.address.country %> <%= order.address.zipcode %></td>
-              <td>
-                <%= simple_form_for order, url: admin_order_path(order.id) do |f| %>
-                  <%= f.input_field :status, collection: ["New", "Payment Pending", "Packing", "Shipped"] %>
-                  <%= f.button :submit, style: "font-size: 0.8em; padding: 3px;" %>
-                <% end %>
-              </td>
             <% end %>
           </tr>
         </table>
