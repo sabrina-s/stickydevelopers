@@ -77,9 +77,9 @@ Address.create(line1: line1, line2: line2, zipcode: zipcode,
   offset = rand(User.count)
   user = User.offset(offset).limit(1).first
 
-  Address.create(line1: line1, line2: line2, zipcode: zipcode,
+  Address.create(label: line1, line1: line1, line2: line2, zipcode: zipcode,
                  country: country, contact_person: contact_person,
-                 contact_no: "123231232", add_type: 1, user: user)
+                 contact_no: "123231232", add_type: "Shipping", user: user)
 end
 
 

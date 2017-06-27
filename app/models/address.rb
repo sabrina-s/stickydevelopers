@@ -8,4 +8,10 @@ class Address < ApplicationRecord
   validates :contact_person, presence: true
   validates :contact_no, presence: true
   validates :add_type, presence: true
+  validates :label, presence: true
+
+  enum add_type: {
+    "Billing": 1,
+    "Shipping": 2
+  }
 end

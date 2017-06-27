@@ -88,3 +88,5 @@ gem 'bootstrap-sass'
 gem 'omniauth-facebook'
 
 gem 'fog-aws'
+
+gem 'country_select'
