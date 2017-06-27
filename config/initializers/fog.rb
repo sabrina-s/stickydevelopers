@@ -9,10 +9,8 @@ CarrierWave.configure do |config|
   config.fog_directory  = ENV['S3_BUCKET']                          # required
 
   # For testing, upload files to local `tmp` folder.
-  if Rails.env.test? || Rails.env.cucumber?
+  if Rails.env.test? || Rails.env.cucumber? || Rails.env.development?
     config.storage = :file
-    config.enable_processing = false
-    config.root = "#{Rails.root}/tmp"
   else
     config.storage = :fog
   end
