@@ -26,6 +26,7 @@ Rails.application.routes.draw do
         resources :variations
       end
     end
+    resources :orders, except: [:new, :create]
   end
 
   # For Guests
