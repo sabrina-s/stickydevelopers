@@ -3,7 +3,7 @@
 <h2>Select Shipping Address</h2>
 <%= simple_form_for current_user.orders.build, url: shop_orders_path do |f| %>
 
-  <%= f.input :address_id, collection: current_user.addresses, label_method: :line1 %>
+  <%= f.input :address_id, collection: current_user.addresses, label_method: :label %>
 
   <%# List Summary of Order %>
 

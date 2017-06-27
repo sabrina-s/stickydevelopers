@@ -2,7 +2,8 @@ class AddressesController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @addresses = current_user.addresses
+    @shipping_addresses = current_user.addresses.where(add_type: "Shipping")
+    @billing_addresses = current_user.addresses.where(add_type: "Billing")
   end
 
   def new
@@ -31,6 +32,7 @@ class AddressesController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
+    redirect_back(fallback_location: addresses_path)
   end
 
   private

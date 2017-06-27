@@ -1,0 +1,41 @@
+<% addresses.each do |address| %>
+    <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <%= address.label %>
+        </div>
+        <div class="panel-body">
+          <table>
+            <tr>
+              <td class="col-md-3">Address Line 1:</td>
+              <td class="col-md-9"><%= address.line1 %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Address Line 2:</td>
+              <td class="col-md-9"><%= address.line2 %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Zipcode:</td>
+              <td class="col-md-9"><%= address.zipcode %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Country</td>
+              <td class="col-md-9"><%= address.country %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Contact Person:</td>
+              <td class="col-md-9"><%= address.contact_person %></td>
+            </tr>
+            <tr>
+              <td class="col-md-3">Contact No:</td>
+              <td class="col-md-9"><%= address.contact_no %></td>
+            </tr>
+          </table>
+        </div>
+        <div class="panel-footer">
+          <%= link_to 'Edit', edit_address_path(address), class: 'btn btn-default' %>
+          <%= link_to 'Delete', address_path(address), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-default'  %>
+        </div>
+      </div>
+    </div>
+  <% end %>

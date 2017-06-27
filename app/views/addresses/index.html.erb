@@ -1,44 +1,14 @@
 
 <div class="container">
-  <div class="row">
+  <div class="col-md-12" style="display:flex; justify-content: flex-end;">
     <%= link_to 'New Address', new_address_path, class: "btn btn-default" %>
   </div>
-  <% @addresses.each do |address| %>
-    <div class="col-md-6">
-      <div class="panel panel-default">
-        <table>
-          <tr>
-            <th colspan=2><%= address.label %></th>
-          </tr>
-          <tr>
-            <td>Address Line 1:</td>
-            <td><%= address.line1 %></td>
-          </tr>
-          <tr>
-            <td>Address Line 2:</td>
-            <td><%= address.line2 %></td>
-          </tr>
-          <tr>
-            <td>Zipcode:</td>
-            <td><%= address.zipcode %></td>
-          </tr>
-          <tr>
-            <td>Country</td>
-            <td><%= address.country %></td>
-          </tr>
-          <tr>
-            <td>Contact Person:</td>
-            <td><%= address.contact_person %></td>
-          </tr>
-          <tr>
-            <td>Contact No:</td>
-            <td><%= address.contact_no %></td>
-          </tr>
-          <tr>
-            <td><%= link_to 'Edit', edit_address_path(address) %></td>
-          </tr>
-        </table>
-      </div>
-    </div>
-  <% end %>
+  <div class="col-md-12">
+    <h2>Shipping Addresses</h2>
+    <%= render partial: 'add_list', locals: { addresses: @shipping_addresses } %>
+  </div>
+  <div class="col-md-12">
+    <h2>Billing Addresses</h2>
+    <%= render partial: 'add_list', locals: { addresses: @billing_addresses } %>
+  </div>
 </div>
