@@ -5,11 +5,12 @@ RSpec.describe Admin::OrdersController, type: :controller do
   let(:user) { create(:user) }
   let(:address) { create(:address, user: user) }
   let(:order) { create(:order, user: user, address: address, status: "New") }
+  let(:orders) { create_list(:order, 5, user: user, address: address, status: "New") }
 
   context 'admin not signed in' do
 
     before do
-      get :edit, params: { id: order.id }
+      get :index, params: { id: order.id }
     end
 
     it { expect(response).to redirect_to new_admin_session_path }
@@ -23,24 +24,33 @@ RSpec.describe Admin::OrdersController, type: :controller do
     before do
       sign_in admin
     end
-      
-    describe 'GET #edit' do
+
+    describe 'GET #index' do
       
       before do
-        get :edit, params: { id: order.id }
+        get :index
       end
 
-      it { expect(assigns(:order)).to eq(order) }
+      it do
+        expect(assigns(:orders)).to match_array(orders)
+      end
 
     end
     
     describe 'PATCH #update' do 
 
       before do
-        patch :update, params: { status: order }
+        patch :update, params: { id: order.id, order: params }
       end
 
-      it { expect(assigns(:order)).to eq() }
+      let(:params) { attributes_for(:order, status: "New") }
+      let(:back) { admin_orders_path }
+      before { request.env['HTTP_REFERER'] = back }
+
+      it do
+        expect(assigns(:order)).to eq(order)
+        expect(Order.find(order.id).status).to eq("New")
+      end
 
     end
 

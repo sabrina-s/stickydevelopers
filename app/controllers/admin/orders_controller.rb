@@ -11,8 +11,11 @@ class Admin::OrdersController < ApplicationController
     @orders = Order.all
   end
 
+  # def edit
+    # not needed for now
+  # end
+
   def update
-    @product = Product.find_by(slug: params[:slug])
     @order = Order.find(params[:id])
 
     if @order.update(update_order_params)
