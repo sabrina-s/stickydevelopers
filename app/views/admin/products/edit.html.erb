@@ -1,19 +1,21 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="row">
-    <%= simple_form_for @product, url: admin_product_path(slug: @product.slug) do |p| %>
-      <%= p.input :name %>
-      <%= p.input :description %>
-      <%= p.input :slug %>
-      <% if @product.photo %>
-        <%= image_tag @product.photo.url %>
-      <% end %>
-      <%= p.file_field :photo %>
+    <%= simple_form_for @product_form, url: admin_product_path(slug: @product_form.product.slug), method: :patch do |form| %>
+      <%= form.simple_fields_for :product do |p| %>
+        <%= p.input :name %>
+        <%= p.input :description %>
+        <%= p.input :slug %>
+        <% if @product_form.product.photo %>
+          <%= image_tag @product_form.product.photo.url %>
+        <% end %>
+        <%= p.file_field :photo %>
 
-      <%= p.button :submit, class: "button" %>
+        <%= p.button :submit, class: "button" %>
+      <% end %>
     <% end %>
   </div>
 
   <div class="row">
-    <li><%= link_to "Back", admin_product_path(slug: @product.slug) %></li>
+    <li><%= link_to "Back", admin_product_path(slug: @product_form.product.slug) %></li>
   </div>
 </div>

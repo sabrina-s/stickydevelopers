@@ -1,11 +1,13 @@
 <div class="col-md-6 col-md-offset-3">
   <div class="row">
-    <%= simple_form_for @product, url: admin_products_path do |p| %>
-      <%= p.input :name %>
-      <%= p.input :description %>
-      <%= p.input :slug %>
-      <%= p.file_field :photo %><br>
-      <%= p.button :submit, class: "button" %>
+    <%= simple_form_for @product_form, url: admin_products_path do |form| %>
+      <%= form.simple_fields_for :product do |p| %>
+        <%= p.input :name %>
+        <%= p.input :description %>
+        <%= p.input :slug %>
+        <%= p.file_field :photo %><br>
+        <%= p.button :submit, class: "button" %>
+      <% end %>
     <% end %>
   </div>
 

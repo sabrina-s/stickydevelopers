@@ -11,13 +11,13 @@ class Admin::ProductsController < ApplicationController
   end
 
   def new
-    @product = Product.new
+    @product_form = ProductForm.new
   end
 
   def create
-    @product = Product.new(product_params)
+    @product_form = ProductForm.new(product_params)
 
-    if @product.save
+    if @product_form.save
       redirect_to admin_products_path
     else
       render :new
@@ -25,14 +25,14 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find_by(slug: params[:slug])
+    @product_form = ProductForm.new(slug: params[:slug])
   end
 
   def update
-    @product = Product.find_by(slug: params[:slug])
+    @product_form = ProductForm.new(product_params.merge(slug: params[:slug]))
 
-    if @product.update(product_params)
-      redirect_to admin_product_path(slug: @product.slug)
+    if @product_form.update
+      redirect_to admin_product_path(slug: @product_form.product.slug)
     else
       render :edit
     end
@@ -48,7 +48,7 @@ class Admin::ProductsController < ApplicationController
   private
 
   def product_params
-    params.require(:product).permit(:name, :description, :slug, :photo)
+    params.require(:product_form).permit(product_attributes: [:name, :description, :slug, :photo])
   end
 
 end
