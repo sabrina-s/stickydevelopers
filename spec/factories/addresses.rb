@@ -6,6 +6,6 @@ FactoryGirl.define do
     country "MyString"
     contact_person "MyString"
     contact_no "MyString"
-    type 1
+    add_type 1
   end
 end

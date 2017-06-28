@@ -1,9 +1,14 @@
 class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
 
-  def edit
-    @product = Product.find_by(slug: params[:slug])
-    @order = Order.find(params[:id])
+  # def edit
+  #   @product = Product.find_by(slug: params[:slug])
+  #   @order = Order.find(params[:id])
+  #   render :nothing => true
+  # end
+
+  def index
+    @orders = Order.all
   end
 
   def update
@@ -13,7 +18,8 @@ class Admin::OrdersController < ApplicationController
     if @order.update(update_order_params)
       redirect_back(fallback_location: root_path)
     else
-      render :edit
+      redirect_back(fallback_location: root_path)
+      flash[:alert] = 'There was an error changing the order status.'
     end
   end
 
