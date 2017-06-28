@@ -11,8 +11,14 @@ class ProductForm
   # attr_accessor :name, :description, :slug, :photo
 
   def initialize(params = {})
-    @product = Product.new
-    super(params)
+    if params[:slug].nil?
+      @product = Product.new
+    else
+      @product = Product.find_by(slug: params[:slug])
+      @params = params
+    end
+
+    super(params.except(:slug))
     # What super does -v
     # @product.name = params[:name]
     # @product.description = params[:description]
@@ -29,6 +35,14 @@ class ProductForm
     # Additional methods goes here
     # send_mailer
     # change_status
+  end
+
+  def update
+    if valid?
+      @product.update(@params[:product_attributes])
+    else
+      false
+    end
   end
 
   def product_is_valid?

@@ -25,14 +25,14 @@ class Admin::ProductsController < ApplicationController
   end
 
   def edit
-    @product = Product.find_by(slug: params[:slug])
+    @product_form = ProductForm.new(slug: params[:slug])
   end
 
   def update
-    @product = Product.find_by(slug: params[:slug])
+    @product_form = ProductForm.new(product_params.merge(slug: params[:slug]))
 
-    if @product.update(product_params)
-      redirect_to admin_product_path(slug: @product.slug)
+    if @product_form.update
+      redirect_to admin_product_path(slug: @product_form.product.slug)
     else
       render :edit
     end
