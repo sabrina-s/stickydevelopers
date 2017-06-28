@@ -23,7 +23,7 @@
           <td><%= item.variation.label %></td>
           <td><%= item.amount %></td>
           <td>$<%= item.variation.price * item.amount %></td>
-          <td><%= link_to 'Remove from Cart', shop_cart_path(item: item), method: :delete, data: { confirm: "Are you sure you want to remove #{item.variation.product.name}" }, class: "btn btn-default" %></td>
+          <td><%= link_to 'Remove from Cart', shop_cart_path(item: item), method: :delete, data: { confirm: "Are you sure you want to remove #{item.variation.product.name}?" }, class: "btn btn-default" %></td>
         </tr>
       <% end %>
       <tr>
