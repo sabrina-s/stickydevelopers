@@ -33,7 +33,7 @@ class PaymentsController < ApplicationController
     )
 
     if result.success? || result.transaction
-      if @order.update(status: "Paid")
+      if @order.update(status: "Paid") && @order.minus_stock
         redirect_to payments_path(id: result.transaction.id)
       else
         flash[:error] = "Order paid but status not updated. Please email us for assistance."
@@ -54,13 +54,13 @@ class PaymentsController < ApplicationController
       result_hash = {
         :header => "Sweet Success!",
         :icon => "success",
-        :message => "Your test transaction has been successfully processed. See the Braintree API response and try again."
+        :message => "Your payment was successfully processed."
       }
     else
       result_hash = {
         :header => "Transaction Failed",
         :icon => "fail",
-        :message => "Your test transaction has a status of #{status}. See the Braintree API response and try again."
+        :message => "Your test transaction has a status of #{status}. Please try again."
       }
     end
   end

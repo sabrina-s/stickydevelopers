@@ -8,7 +8,7 @@
       <th class="col-md-2">Status</th>
       <th class="col-md-3"></th>
     </tr>
-    <% current_user.orders.each do |order| %>
+    <% current_user.orders.reverse.each do |order| %>
       <tr>
         <td><%= order.id %></td>
         <td><%= order.created_at %></td>
