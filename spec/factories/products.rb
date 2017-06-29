@@ -4,5 +4,11 @@ FactoryGirl.define do
     description "Dev sticker"
     sequence(:slug) { |n| "slug#{n}" }
     # association :primary_pic, factory: :photo
+
+    trait :invalid do
+      name ""
+      description nil
+      slug nil
+    end
   end
 end
