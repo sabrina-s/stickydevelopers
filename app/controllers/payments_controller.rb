@@ -60,7 +60,7 @@ class PaymentsController < ApplicationController
       result_hash = {
         :header => "Transaction Failed",
         :icon => "fail",
-        :message => "Your test transaction has a status of #{status}. Please try again."
+        :message => "Your transaction has a status of #{status}. Please try again."
       }
     end
   end
