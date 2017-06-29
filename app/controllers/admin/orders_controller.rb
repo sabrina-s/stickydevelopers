@@ -22,6 +22,9 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
 
     if @order.update(update_order_params)
+      if @order.status == "Shipped"
+        OrderMailer.order_shipped_email(@order.user, @order).deliver_now
+      end
       redirect_back(fallback_location: root_path)
     else
       redirect_back(fallback_location: root_path)

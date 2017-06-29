@@ -1,0 +1,15 @@
+Thanks for shopping with us, <%= @user.first_name %>!
+
+The following order has been shipped:
+
+<% sum = 0 %>
+<% @order.user_cart_items.each do |item| %>
+  <% sum += (item.variation.price * item.amount) %>
+  <%= item.variation.product.name %>
+  <%= item.variation.label %>
+  <%= item.amount %>
+  $<%= item.variation.price * item.amount %>
+<% end %>
+Total: $<%= sum %>
+
+To view your order details, click <%= link_to 'here', shop_order_url(@order) %>.
