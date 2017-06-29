@@ -26,7 +26,7 @@ RSpec.describe Admin::OrdersController, type: :controller do
     end
 
     describe 'GET #index' do
-      
+
       before do
         get :index
       end
@@ -36,8 +36,8 @@ RSpec.describe Admin::OrdersController, type: :controller do
       end
 
     end
-    
-    describe 'PATCH #update' do 
+
+    describe 'PATCH #update' do
 
       before do
         patch :update, params: { id: order.id, order: params }
@@ -52,6 +52,18 @@ RSpec.describe Admin::OrdersController, type: :controller do
         expect(Order.find(order.id).status).to eq("Paid")
       end
 
+    end
+
+    describe 'get show' do
+      let(:user) { create(:user) }
+      let(:address) { create(:address, user: user) }
+      let(:order) { create(:order, user: user, address: address) }
+      before do
+        get :show, params: { id: order.id }
+      end
+
+      it { expect(assigns(:order)).to eq(order) }
+      it { expect(assigns(:user)).to eq(user) }
     end
 
   end
