@@ -1,19 +1,36 @@
-<h1>Paid</h1>
+<h1>Manage Orders</h1>
 <div class="panel panel-default">
-  <%= render partial: 'ordertable', locals: { orders: @paid_orders } %>
+  <div class="panel-heading">
+    <big>Paid</big>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'ordertable', locals: { orders: @paid_orders } %>
+  </div>
 </div>
 
-<h1>Packed</h1>
 <div class="panel panel-default">
-  <%= render partial: 'ordertable', locals: { orders: @packed_orders } %>
+  <div class="panel-heading">
+    <big>Packed</big>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'ordertable', locals: { orders: @packed_orders } %>
+  </div>
 </div>
 
-<h1>Shipped</h1>
 <div class="panel panel-default">
-  <%= render partial: 'ordertable', locals: { orders: @shipped_orders } %>
+  <div class="panel-heading">
+    <big>Shipped</big>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'ordertable', locals: { orders: @shipped_orders } %>
+  </div>
 </div>
 
-<h1>Payment Pending</h1>
 <div class="panel panel-default">
-  <%= render partial: 'ordertable', locals: { orders: @new_orders } %>
+  <div class="panel-heading">
+    <big>Payment Pending</big>
+  </div>
+  <div class="panel-body">
+    <%= render partial: 'ordertable', locals: { orders: @new_orders } %>
+  </div>
 </div>

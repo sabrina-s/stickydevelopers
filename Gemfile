@@ -91,3 +91,5 @@ gem 'fog-aws'
 gem 'country_select'
 # Payments
 gem 'braintree', '~> 2.76.0'
+# Create beautiful JavaScript charts with one line of Ruby
+gem "chartkick"
