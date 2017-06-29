@@ -77,7 +77,7 @@ country = Faker::Address.country
 contact_person = Faker::Name.name
 user = User.first
 
-Address.create(line1: line1, line2: line2, zipcode: zipcode,
+Address.create(label: line1, line1: line1, line2: line2, zipcode: zipcode,
                country: country, contact_person: contact_person,
                  contact_no: "123231232", add_type: 1, user: user)
 # Add additional addresses
