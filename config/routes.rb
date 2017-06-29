@@ -30,6 +30,7 @@ Rails.application.routes.draw do
       end
     end
     resources :orders, except: [:new, :create]
+    resource :stats, only: [:show]
   end
 
   # For Guests
