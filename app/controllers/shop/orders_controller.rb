@@ -14,7 +14,7 @@ class Shop::OrdersController < ApplicationController
       @current_cart.move_items_to_order(@order)
       OrderMailer.order_summary_email(@user, @order).deliver_now
       end
-      redirect_to root_path
+      redirect_to new_payments_path(id: @order.id)
     else
       redirect_back(fallback_location: root_path)
       flash[:notice] = "There was a problem saving your order."
