@@ -1,0 +1,25 @@
+<table class="table">
+  <tr>
+    <th class="col-md-1">Order ID</th>
+    <th class="col-md-2">User</th>
+    <th class="col-md-3">Order date</th>
+    <th class="col-md-2">Total Amount</th>
+    <th class="col-md-1">Actions</th>
+    <th class="col-md-3">Status</th>
+  </tr>
+  <% orders.each do |order| %>
+    <tr>
+      <td><%= order.id %></td>
+      <td><%= order.user.username %></td>
+      <td><%= order.created_at %></td>
+      <td>$<%= order.get_total %></td>
+      <td><%= link_to 'Details', admin_order_path(order) %></td>
+      <td>
+        <%= simple_form_for order, url: admin_order_path(order.id) do |f| %>
+          <%= f.input_field :status, collection: ["Payment Pending", "Paid", "Packed", "Shipped"] %>
+          <%= f.button :submit, style: "font-size: 0.8em; padding: 3px;" %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>

@@ -4,8 +4,8 @@ RSpec.describe Admin::OrdersController, type: :controller do
 
   let(:user) { create(:user) }
   let(:address) { create(:address, user: user) }
-  let(:order) { create(:order, user: user, address: address, status: "New") }
-  let(:orders) { create_list(:order, 5, user: user, address: address, status: "New") }
+  let(:order) { create(:order, user: user, address: address, status: "Payment Pending") }
+  let(:orders) { create_list(:order, 5, user: user, address: address, status: "Payment Pending") }
 
   context 'admin not signed in' do
 
@@ -32,7 +32,7 @@ RSpec.describe Admin::OrdersController, type: :controller do
       end
 
       it do
-        expect(assigns(:orders)).to match_array(orders)
+        expect(assigns(:new_orders)).to match_array(orders)
       end
 
     end
@@ -43,13 +43,13 @@ RSpec.describe Admin::OrdersController, type: :controller do
         patch :update, params: { id: order.id, order: params }
       end
 
-      let(:params) { attributes_for(:order, status: "New") }
+      let(:params) { attributes_for(:order, status: "Paid") }
       let(:back) { admin_orders_path }
       before { request.env['HTTP_REFERER'] = back }
 
       it do
         expect(assigns(:order)).to eq(order)
-        expect(Order.find(order.id).status).to eq("New")
+        expect(Order.find(order.id).status).to eq("Paid")
       end
 
     end
