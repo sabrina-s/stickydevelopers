@@ -11,6 +11,7 @@ User.destroy_all
 Address.destroy_all
 Admin.destroy_all
 
+
 # 10.times do
 #   name = Faker::Pokemon.unique.name
 #   slug = name.downcase
@@ -54,6 +55,18 @@ User.create(email: email, password: password, password_confirmation: password,
 
   User.create(username: username, email: email, password: password, password_confirmation: password,
               first_name: first_name, last_name: last_name, birthdate: birthdate)
+
+  line1 = Faker::Address.street_name
+  line2 = Faker::Address.street_address
+  zipcode = Faker::Address.zip
+  country = Faker::Address.country
+  contact_person = Faker::Name.name
+  offset = rand(User.count)
+  user = User.offset(offset).limit(1).first
+
+  Address.create(label: line1, line1: line1, line2: line2, zipcode: zipcode,
+                 country: country, contact_person: contact_person,
+                 contact_no: "123231232", add_type: "Shipping", user: user)
 end
 
 # Add Address for first user for testing
@@ -67,7 +80,7 @@ user = User.first
 Address.create(line1: line1, line2: line2, zipcode: zipcode,
                country: country, contact_person: contact_person,
                  contact_no: "123231232", add_type: 1, user: user)
-# Add address
+# Add additional addresses
 10.times do
   line1 = Faker::Address.street_name
   line2 = Faker::Address.street_address
@@ -217,3 +230,19 @@ var_price = [ 1.5, 2, 2.5 ]
   variation.save
 end
 
+10.times do
+  offset = rand(User.count)
+  user = User.offset(offset).limit(1).first
+  address = user.addresses.first
+  status = "Payment Pending"
+  order = Order.create(user: user, address: address, status: status)
+
+  item_amount = Faker::Number.between(1, 5)
+  item_amount.times do
+    offset = rand(Variation.count)
+    variation = Variation.offset(offset).limit(1).first
+    amount = Faker::Number.between(1, 5)
+    cart_item = order.user_cart_items.build(amount: amount, variation: variation)
+    cart_item.save
+  end
+end
