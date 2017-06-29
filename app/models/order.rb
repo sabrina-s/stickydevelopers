@@ -18,4 +18,11 @@ class Order < ApplicationRecord
     end
     return sum
   end
+
+  def minus_stock
+    self.user_cart_items.each do |item|
+      remaining_stock = item.variation.stock - item.amount
+      item.variation.update(stock: remaining_stock)
+    end
+  end
 end
