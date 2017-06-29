@@ -83,10 +83,11 @@ gem 'jquery-rails'
 gem 'rails_admin', '~> 1.2'
 # Official Sass port of Bootstrap 2 and 3.
 gem 'bootstrap-sass'
-
-
+# Authentication with Facebook
 gem 'omniauth-facebook'
-
+# Fog storage for Heroku
 gem 'fog-aws'
-
+# Country drop-down list for simple form
 gem 'country_select'
+# Payments
+gem 'braintree', '~> 2.76.0'
