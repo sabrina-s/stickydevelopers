@@ -2,11 +2,16 @@ class Shop::CartsController < ApplicationController
   def create
     @variation = Variation.find(params[:user_cart_item][:variation_id])
     @amount = params[:user_cart_item][:amount]
-    if @current_cart.add_item(@variation, @amount)
-      redirect_to shop_product_path(slug: @variation.product.slug)
+    if @amount.to_i < @variation.stock
+      if @current_cart.add_item(@variation, @amount)
+        redirect_to shop_product_path(slug: @variation.product.slug)
+      else
+        redirect_to shop_product_path(slug: @variation.product.slug)
+        flash[:notice] = "There was an error when adding the item to cart"
+      end
     else
-      redirect_to shop_product_path(slug: @variation.product.slug)
-      flash[:notice] = "There was an error when adding the item to cart"
+        redirect_to shop_product_path(slug: @variation.product.slug)
+        flash[:notice] = "Sorry, the item is out of stock."     
     end
   end
 

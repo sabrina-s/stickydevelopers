@@ -6,6 +6,10 @@ class Shop::ProductsController < ApplicationController
 
   def show
     @product = Product.find_by(slug: params[:slug])
+    @variation_array = 
+      @product.variations.map do |variation|
+        ["#{variation.label} (qty: #{variation.stock})", variation.id]
+      end
   end
 
   def search
