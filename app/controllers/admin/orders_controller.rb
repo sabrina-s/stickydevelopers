@@ -26,6 +26,12 @@ class Admin::OrdersController < ApplicationController
     end
   end
 
+  def show
+    @order = Order.find(params[:id])
+    @user = @order.user
+    @address = @order.address
+  end
+
   private
 
   def update_order_params

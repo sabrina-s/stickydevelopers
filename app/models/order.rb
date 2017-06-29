@@ -10,4 +10,12 @@ class Order < ApplicationRecord
     "Packing": 3,
     "Shipped": 4
   }
+
+  def get_total
+    sum = 0
+    self.user_cart_items.each do |item|
+      sum += item.amount * item.variation.price
+    end
+    return sum
+  end
 end

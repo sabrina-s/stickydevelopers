@@ -1,0 +1,121 @@
+<!-- Order Details -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Details
+  </div>
+  <div class="panel-body">
+    <table>
+      <tr>
+        <td class="col-md-3">Order Id:</td>
+        <td class="col-md-9"><%= @order.id %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Order Status:</td>
+        <td class="col-md-9"><%= @order.status %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Order Date:</td>
+        <td class="col-md-9"><%= @order.created_at %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- User Details -->
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    User Details
+  </div>
+  <div class="panel-body">
+    <table>
+      <tr>
+        <td class="col-md-3">Username:</td>
+        <td class="col-md-9"><%= @user.username %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Firstname:</td>
+        <td class="col-md-9"><%= @user.first_name %></td>
+      </tr>
+        <td class="col-md-3">Lastname:</td>
+        <td class="col-md-9"><%= @user.last_name %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Email:</td>
+        <td class="col-md-9"><%= @user.email %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<!-- Address -->
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Shipping Address
+  </div>
+  <div class="panel-body">
+    <table>
+      <tr>
+        <td class="col-md-3">Address Line 1:</td>
+        <td class="col-md-9"><%= @address.line1 %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Address Line 2:</td>
+        <td class="col-md-9"><%= @address.line2 %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Zipcode:</td>
+        <td class="col-md-9"><%= @address.zipcode %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Country</td>
+        <td class="col-md-9"><%= @address.country %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Contact Person:</td>
+        <td class="col-md-9"><%= @address.contact_person %></td>
+      </tr>
+      <tr>
+        <td class="col-md-3">Contact No:</td>
+        <td class="col-md-9"><%= @address.contact_no %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+
+<div class="panel panel-default">
+  <div class="panel-heading">
+    Order Summary
+  </div>
+  <div class="panel-body">
+    <table class="table">
+      <tr>
+        <th class="col-md-2">Photo</th>
+        <th class="col-md-4">Item</th>
+        <th class="col-md-2">Variation</th>
+        <th class="col-md-2">Price Per Piece</th>
+        <th class="col-md-1">Amount</th>
+        <th class="col-md-1">Total Price</th>
+      </tr>
+      <% @order.user_cart_items.each do |item| %>
+        <tr>
+          <td>
+            <% if item.variation.product.photo %>
+              <%= image_tag item.variation.product.photo.url, class: 'cart-image' %>
+            <% end %>
+          </td>
+          <td><%= item.variation.product.name %></td>
+          <td><%= item.variation.label %></td>
+          <td><%= item.variation.price %></td>
+          <td><%= item.amount %></td>
+          <td>$<%= item.variation.price * item.amount %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td colspan=4></td>
+        <td>Total</td>
+        <td>$<%= @order.get_total %></td>
+      </tr>
+    </table>
+  </div>
+</div>
