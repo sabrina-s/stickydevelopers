@@ -18,12 +18,14 @@ RSpec.describe Shop::ProductsController, type: :controller do
 
       describe 'GET #show' do
         let(:product) { create(:product) }
+        let!(:variation) { create(:variation, product: product) }
 
         before do
           get :show, params: { slug: product.slug }
         end
         it { expect(response).to have_http_status(:success) }
         it { expect(assigns(:product)).to eq(product) }
+        it { expect(assigns(:variation_array)).to eq([["#{variation.label} (qty: #{variation.stock})", variation.id]])}
       end
 
     end
@@ -47,12 +49,23 @@ RSpec.describe Shop::ProductsController, type: :controller do
 
       describe 'GET #show' do
         let(:product) { create(:product) }
-
+        let!(:variation) { create(:variation, product: product) }
         before do
           get :show, params: { slug: product.slug }
         end
         it { expect(response).to have_http_status(:success) }
         it { expect(assigns(:product)).to eq(product) }
+        it { expect(assigns(:variation_array)).to eq([["#{variation.label} (qty: #{variation.stock})", variation.id]])}
+      end
+
+      describe 'get search' do
+        let!(:products) { create_list(:product, 3) }
+
+        before do
+          get :search, params: { search: "S" }
+        end
+
+        it { expect(assigns(:products)).to match_array(products) }
       end
     end
 end
