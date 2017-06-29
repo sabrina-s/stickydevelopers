@@ -5,7 +5,12 @@ class UserCart < ApplicationRecord
   attr_accessor :variation_id, :amount
 
   def add_item(variation, amount)
-    item = self.user_cart_items.build(variation_id: variation.id, amount: amount)
+    if item = self.user_cart_items.find_by(variation_id: variation.id)
+      updated_amount = item.amount + amount.to_i
+      item.amount = updated_amount
+    else
+      item = self.user_cart_items.build(variation_id: variation.id, amount: amount)
+    end
     return true if item.save
     false
   end
