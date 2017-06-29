@@ -1,11 +1,19 @@
-<table>
-  <% @orders.each do |order| %>
-    <tr>
-      <%= order.user_id %>
-      <%= simple_form_for order, url: admin_order_path(order.id) do |f| %>
-        <%= f.input_field :status, collection: ["New", "Payment Pending", "Packing", "Shipped"] %>
-        <%= f.button :submit, style: "font-size: 0.8em; padding: 3px;" %>
-      <% end %>
-    </tr><br>
-  <% end %>
-</table>
+<h1>Paid</h1>
+<div class="panel panel-default">
+  <%= render partial: 'ordertable', locals: { orders: @paid_orders } %>
+</div>
+
+<h1>Packed</h1>
+<div class="panel panel-default">
+  <%= render partial: 'ordertable', locals: { orders: @packed_orders } %>
+</div>
+
+<h1>Shipped</h1>
+<div class="panel panel-default">
+  <%= render partial: 'ordertable', locals: { orders: @shipped_orders } %>
+</div>
+
+<h1>Payment Pending</h1>
+<div class="panel panel-default">
+  <%= render partial: 'ordertable', locals: { orders: @new_orders } %>
+</div>

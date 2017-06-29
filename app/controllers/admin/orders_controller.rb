@@ -8,7 +8,10 @@ class Admin::OrdersController < ApplicationController
   # end
 
   def index
-    @orders = Order.all
+    @new_orders = Order.where(status: "Payment Pending").order('updated_at DESC')
+    @paid_orders = Order.where(status: "Paid").order('updated_at DESC')
+    @packed_orders = Order.where(status: "Packed").order('updated_at DESC')
+    @shipped_orders = Order.where(status: "Shipped").order('updated_at DESC')
   end
 
   # def edit

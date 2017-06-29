@@ -5,9 +5,9 @@ class Order < ApplicationRecord
   validates :status, presence: true
 
   enum status: {
-    "New": 1,
-    "Payment Pending": 2,
-    "Packing": 3,
+    "Payment Pending": 1,
+    "Paid": 2,
+    "Packed": 3,
     "Shipped": 4
   }
 
