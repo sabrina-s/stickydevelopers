@@ -2,17 +2,24 @@
 <div class="panel panel-default">
   <table class="table">
     <tr>
-      <th>Order ID</th>
-      <th>Order date</th>
-      <th>Total Amount</th>
-      <th>Actions</th>
+      <th class="col-md-1">Order ID</th>
+      <th class="col-md-3">Order date</th>
+      <th class="col-md-2">Total Amount</th>
+      <th class="col-md-2">Status</th>
+      <th class="col-md-3"></th>
     </tr>
     <% current_user.orders.each do |order| %>
       <tr>
         <td><%= order.id %></td>
         <td><%= order.created_at %></td>
         <td>$<%= order.get_total %></td>
-        <td><%= link_to 'Details', shop_order_path(order) %></td>
+        <td><%= order.status %></td>
+        <td class="btn-toolbar">
+          <%= link_to 'Details', shop_order_path(order), class: "btn btn-default pull-right" %> 
+          <% if order.status == "Payment Pending" %>
+            <%= link_to 'Pay now', new_payments_path(id: order.id), class: "btn btn-default pull-right" %> 
+          <% end %> 
+        </td>
       </tr>
     <% end %>
   </table>
