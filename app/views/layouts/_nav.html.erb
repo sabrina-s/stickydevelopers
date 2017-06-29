@@ -3,26 +3,19 @@
     <ul class="nav navbar-nav">
       <li><%= link_to "Home", root_path %></li>
       <li><%= link_to "Orders", shop_orders_path %></li>
+      <li><%= link_to "Products", shop_products_path %></li>
 
-        <% if !user_signed_in? %>
-          <% if !admin_signed_in? %>
-          <li><%= link_to "Admin", new_admin_session_path %></li>
-          <% end %>
+      <% if admin_signed_in? %>
+        <li><%= link_to "Manage Inventory", admin_products_path %></li>
+      <% end %>
+      <li>
+        <%= form_tag search_shop_products_path, method: :get, class: "navbar-form navbar-right" do %>
+          <div class="form-group">
+          <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control' %>
+          <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
+          </div>
         <% end %>
-
-        <li><%= link_to "Products", shop_products_path %></li>
-
-        <% if admin_signed_in? %>
-          <li><%= link_to "Manage Inventory", admin_products_path %></li>
-        <% end %>
-        <li>
-          <%= form_tag search_shop_products_path, method: :get, class: "navbar-form navbar-right" do %>
-            <div class="form-group">
-            <%= text_field_tag :search, params[:search], placeholder: "Search", class: 'form-control' %>
-            <%= submit_tag "Search", :name => nil, class: 'btn btn-default' %>
-            </div>
-          <% end %>
-        </li>
+      </li>
     </ul>
 
     <ul class="nav navbar-nav navbar-right">

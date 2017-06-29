@@ -9,7 +9,11 @@
   </head>
 
   <body>
-    <%= render 'layouts/nav' %>
+    <% if admin_signed_in? %>
+      <%= render 'layouts/admin_nav' %>
+    <% else %>
+      <%= render 'layouts/nav' %>
+    <% end %>
     <div class="container">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
