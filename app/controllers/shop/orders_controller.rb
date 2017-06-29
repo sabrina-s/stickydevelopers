@@ -21,6 +21,12 @@ class Shop::OrdersController < ApplicationController
     end
   end
 
+  def show
+    @order = Order.find(params[:id])
+    @user = @order.user
+    @address = @order.address
+  end
+
   private
 
   def order_params

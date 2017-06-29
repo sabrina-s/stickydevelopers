@@ -1,0 +1,22 @@
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li><%= link_to "Home", root_path %></li>
+      <li><%= link_to 'Manage Orders', admin_orders_path %></li>
+      <li><%= link_to "Manage Inventory", admin_products_path %></li>
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+      <% if admin_signed_in? %>
+        <li class="dropdown">
+          <%= link_to "Welcome Admin", "#", { class: "dropdown-toggle", "data-toggle": "dropdown" }%>
+            <ul class="dropdown-menu">
+              <li><%= link_to 'Edit Account', edit_admin_registration_path %></li>
+              <li><%= link_to "Sign Out", destroy_admin_session_path, method: :delete %></li>
+            </ul>
+        </li>
+      <% end %>
+    </ul>
+
+  </div>
+</div>

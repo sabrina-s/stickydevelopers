@@ -1,31 +1,19 @@
 <h1>All Orders</h1>
 <div class="panel panel-default">
-  <% current_user.orders.each do |order| %>
-    <br /><h2>Order #<%= order.id %></h2>
-
-    <%# Order Summary %>
-    <table class="table">
+  <table class="table">
+    <tr>
+      <th>Order ID</th>
+      <th>Order date</th>
+      <th>Total Amount</th>
+      <th>Actions</th>
+    </tr>
+    <% current_user.orders.each do |order| %>
       <tr>
-        <th>Item</th>
-        <th>Variation</th>
-        <th>Amount</th>
-        <th>Total Price</th>
+        <td><%= order.id %></td>
+        <td><%= order.created_at %></td>
+        <td>$<%= order.get_total %></td>
+        <td><%= link_to 'Details', shop_order_path(order) %></td>
       </tr>
-      <% sum = 0 %>
-      <% order.user_cart_items.each do |item| %>
-        <% sum += (item.variation.price * item.amount) %>
-        <tr>
-          <td><%= item.variation.product.name %></td>
-          <td><%= item.variation.label %></td>
-          <td><%= item.amount %></td>
-          <td>$<%= item.variation.price * item.amount %></td>
-        </tr>
-      <% end %>
-      <tr>
-        <td colspan=2></td>
-        <td>Total</td>
-        <td>$<%= sum %></td>
-      </tr>
-    </table>
-  <% end %>
+    <% end %>
+  </table>
 </div>
