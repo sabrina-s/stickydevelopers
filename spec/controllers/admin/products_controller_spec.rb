@@ -97,6 +97,17 @@ RSpec.describe Admin::ProductsController, type: :controller do
       #it { expect(response).to redirect_to admin_product_path(slug: product2.slug) }
     end
 
+    describe 'delete destroy' do
+      let!(:product3) { create(:product) }
+      before do
+        delete :destroy, params: { slug: product3.slug }
+      end
+
+      it { expect(Product.count).to eq(0) }
+      it { expect(response).to redirect_to admin_products_path }
+      it { expect(flash[:notice]).to match("Item was successfully deleted")}
+    end
+
   end
 
 end
