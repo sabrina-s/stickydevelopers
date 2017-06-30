@@ -2,7 +2,7 @@ class Shop::CartsController < ApplicationController
   def create
     @variation = Variation.find(params[:user_cart_item][:variation_id])
     @amount = params[:user_cart_item][:amount]
-    if @amount.to_i < @variation.stock
+    if @amount.to_i <= @variation.stock
       if @current_cart.add_item(@variation, @amount)
         redirect_to shop_product_path(slug: @variation.product.slug)
       else
