@@ -1,14 +1,14 @@
 <%= simple_form_for @address do |f| %>
 
-<%= f.input :label %>
-<%= f.input :add_type, collection: ["Shipping", "Billing"] %>
-<%= f.input :line1 %>
-<%= f.input :line2 %>
-<%= f.input :zipcode %>
-<%= f.input :country %>
-<%= f.input :contact_person %>
-<%= f.input :contact_no %>
+  <%= f.input :label %>
+  <%= f.input :add_type, collection: ["Shipping", "Billing"] %>
+  <%= f.input :line1 %>
+  <%= f.input :line2 %>
+  <%= f.input :zipcode %>
+  <%= f.input :country, selected: @address.country ? @address.country : "SG" %>
+  <%= f.input :contact_person %>
+  <%= f.input :contact_no %>
 
-<%= f.button :submit %>
+  <%= f.button :submit %>
 
 <% end %>

@@ -2,6 +2,6 @@ FactoryGirl.define do
   factory :order do
     association :user
     association :address
-    status "New"
+    status "Payment Pending"
   end
 end

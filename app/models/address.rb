@@ -15,4 +15,9 @@ class Address < ApplicationRecord
     "Billing": 1,
     "Shipping": 2
   }
+
+  def country_name
+    country_string = ISO3166::Country[country]
+    country_string.translations[I18n.locale.to_s] || country_string.name
+  end
 end

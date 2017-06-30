@@ -5,7 +5,7 @@ FactoryGirl.define do
     password "123123"
     first_name "John"
     last_name "Doe"
-    username "Sabrina"
+    sequence(:username) { |n| "user#{n}" }
     birthdate "01-01-1990"
     # default_shipping ""
   end

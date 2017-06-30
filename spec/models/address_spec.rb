@@ -16,4 +16,12 @@ RSpec.describe Address, type: :model do
   it { should validate_presence_of(:contact_no) }
   it { should validate_length_of(:contact_no).is_at_most(30) }
   it { should validate_presence_of(:add_type) }
+
+  describe '.country_name' do
+    let(:user) { create(:user) }
+    let(:address) { create(:address, country: "SG", user: user) }
+    it 'should get back full name of Singapore' do
+      expect(address.country_name).to eq("Singapore")
+    end
+  end
 end
