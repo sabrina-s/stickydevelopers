@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :orders
   end
 
-  devise_for :admins
+  devise_for :admins, :controllers => { registrations: 'admins/registrations' }
   namespace :admin do
     resources :products, param: :slug do
       member do
