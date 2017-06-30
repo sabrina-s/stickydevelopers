@@ -16,5 +16,12 @@ class Admin::StatsController < ApplicationController
       end
       @dates_amount[date] = total_in_day
     end
+
+    @users_count = {}
+    ((Date.today-30)..Date.today).each do |date|
+      total_users = 0
+      total_users += User.where("date(created_at) = ?", date).count
+      @users_count[date] = total_users
+    end
   end
 end
